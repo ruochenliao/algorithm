@@ -1,3 +1,5 @@
+import greedy.MaxActivity;
+
 import java.util.List;
 
 public class TestMaxActivity {
