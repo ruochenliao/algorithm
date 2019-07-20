@@ -8,10 +8,16 @@ import java.util.List;
  * 每个活动i都有一个要求使用该资源的起始时间si和一个结束时间fi，且si＜fi。如果选择了活动i，则它在半开时间区间[si ，fi )内占用资源。若区间[si ，fi )与区间[sj，fj )不相交，则称活动i与活动j是相容的。当 si ≥ fj 或 sj ≥ fi 时，活动i与活动j相容。
  * 活动安排问题就是在所给的活动集合中选出最大的相容活动子集合。
  *
- * 作者：追云的帆
- * 链接：https://www.jianshu.com/p/5a97bcc407fa
- * 来源：简书
- * 简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+ * 思考: 最早结束的活动 总是最优解的一部分, 因为最早结束的活动可以为后来的活动留下更多的时间。只要每次贪心地找到下一个活动时间晚于现在的活动, 并且活动结束最早的那个。
+ *
+ * 贪心公式:
+ * for cur = 0 to cur =leftEdge.length
+ * if(rightEdge[cur] < leftEdge[next]){
+ *      result = result U {cur};
+ *      cur = next;
+ * }
+ * result = result U {cur};
+ *
  */
 public class MaxActivity {
     /**

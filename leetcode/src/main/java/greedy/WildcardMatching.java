@@ -46,6 +46,18 @@ package greedy;
  * s = "acdcb"
  * p = "a*c?b"
  * Output: false
+ *
+ *
+ * p 遇到下面的时候
+ * {
+ *      ?, 相等: i++; j++
+ *      *: 记录anchor
+ *      others:{
+ *      遇到过 *: 回到 anchor;
+ *      没遇到过 *: return false;
+ * }
+ * 补偿: 当 j < p.length 最后几个字母可能没有匹配到
+ * }
  */
 public class WildcardMatching {
     public boolean isMatch(String s, String p){

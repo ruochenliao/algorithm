@@ -31,6 +31,10 @@ import java.util.Comparator;
  * Output: 0
  *
  * Explanation: You don't need to remove any of the intervals since they're already non-overlapping.
+ *
+ * 思考: 去掉最少的活动, 就是保证最大的活动数;
+ * 先给 intervals 按活动结束时间有小到大排序, 然后只要每次贪心地找到下一个活动时间晚于现在的活动, 并且活动结束最早的那个。
+ *
  */
 public class NonOverlappingInterval {
     public int eraseOverlapIntervals(int[][] intervals) {
