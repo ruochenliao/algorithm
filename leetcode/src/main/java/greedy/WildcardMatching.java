@@ -76,8 +76,8 @@ public class WildcardMatching {
                 j++;
             }
             else if(jAnchor != 0){
-                i++;
-                iAnchor = i;
+                iAnchor++;
+                i = iAnchor;
                 j = jAnchor;
                 j++;
             }
