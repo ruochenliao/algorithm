@@ -32,6 +32,9 @@ import java.util.PriorityQueue;
  * 每次选取 time + courses[i][0] <= courses[i][1] 的 course
  * 如果没选中, 查看原来选的这些课里, 是否存在 courses[j][0] > courses[i][0]; i 是当前遍历的课, j < i。
  * 如果有, 用当前 course i 替换掉之前的 course j, time += course[i][0] - course[j][0]
+ *
+ * Time complexity : O\big(nlog(n)\big)O(nlog(n)). At most nn elements are added to the queuequeue.
+ * Adding each element is followed by heapification, which takes O(nlgn) 时间复杂度
  */
 public class CourseScheduleIII {
     public int scheduleCourse(int[][] courses) {
