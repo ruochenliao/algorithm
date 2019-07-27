@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.MaxActivity;
 
 import java.util.List;

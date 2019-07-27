@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.WildcardMatching;
 import org.junit.Assert;
 

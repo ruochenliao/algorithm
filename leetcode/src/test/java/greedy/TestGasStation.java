@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.GasStation;
 
 public class TestGasStation {

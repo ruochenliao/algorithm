@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.Candy;
 
 public class TestCandy {

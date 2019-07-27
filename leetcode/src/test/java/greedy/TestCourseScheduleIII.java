@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.CourseScheduleIII;
 
 public class TestCourseScheduleIII {

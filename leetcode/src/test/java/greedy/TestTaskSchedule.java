@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.TaskSchedule;
 
 public class TestTaskSchedule {

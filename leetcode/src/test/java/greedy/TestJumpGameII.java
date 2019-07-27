@@ -1,3 +1,5 @@
+package greedy;
+
 import greedy.JumpGameII;
 
 public class TestJumpGameII {
