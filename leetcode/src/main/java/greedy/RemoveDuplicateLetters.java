@@ -20,9 +20,13 @@ public class RemoveDuplicateLetters {
 
     /**
      * 不仅仅要去重, 而且要在这些去重的结果中， 找到最符合字母表顺序的那个
+     * 如果结果集是 result
+     * 那么唯一值的顺序是不能变的. 只要在唯一值之前比唯一值小 letter 就应该在 result 结果集里
+     *
      * input = S
      * S{a1,a2,a3, ... ai ... an)
-     * 那么 ai 只要满足 S 中第一个唯一值之前的的最小的 letter
+     * if(a3 是唯一的 && a1 < a2 < a3)
+     *      result += {a1}
      * 接下来需要在 ai+1 ~ an 中找到下一个 唯一值之前的的最小的 letter
      * 这些结果组合起来就是 S 中唯一值前的最小值和唯一值们组成的集合, 最小值会
      * @param s
