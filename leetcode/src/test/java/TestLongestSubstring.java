@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class TestLongestSubstring {
     public static void main(String[] args){
         LongestSubstringWithoutRepeatingCharacters lengthOfLongestSubstring = new LongestSubstringWithoutRepeatingCharacters();
