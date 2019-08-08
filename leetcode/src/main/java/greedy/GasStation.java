@@ -46,8 +46,13 @@ package greedy;
  * Therefore, you can't travel around the circuit once no matter where you start.
  *
  * 算法
- * 1 在一个折线图里, 如果所有顶点相加起来 sum >= 0, 则说明存在一点这个折现图循环起来, sum <0 则说明不存在这个起点
- * 2 在一个折线图里, 如果 i 到 j 上的所有顶点加起来 sum <0; 则说明 i 到 j 中没有一个点能到达 j;
+ * 如果 gas[1] + gas[2] + ... + gas[n] >= cost[1] + cost[2] + ... + cost[n]
+ * 假设 minSum = gas[1] - cost[1] + ... + gas[i] - cost[i] 是连续相加最小的值
+ * 那么 gas[i+1] - cost[i+1] >= 0
+ * 为了让 minSum 大一些 , 那么 gas[i+1] - cost[i+1] + gas[i+2] - cost[i+2] >= 0
+ * 于是 gas[i+1] - cost[i+1] + ... + gas[n-1] - cost[n-1] >= 0
+ * 于是 gas[1] - cost[1] + .. + gas[n-1] - cost[n-1] >= 0
+ *
  */
 public class GasStation {
     public int canCompleteCircuit(int[] gas, int[] cost) {
