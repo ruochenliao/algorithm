@@ -35,89 +35,29 @@ public class RemoveDuplicateLetters {
      * @return
      */
     public String removeDuplicateLetters(String s) {
-        if(s == null || s.length() == 0){
-            return "";
-        }
-        int[] arr = new int[26];
-        for(int i =0; i < s.length(); i++){
-            arr[s.charAt(i) - 'a']++;
-        }
-        int pos = 0;
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) < s.charAt(pos)){
-                pos = i;
-            }
-            if(--arr[s.charAt(i) - 'a'] == 0){
-                break;
-            }
-        }
-        return s.charAt(pos) + removeDuplicateLetters(s.substring(pos+1).replace("" + s.charAt(pos), ""));
-    }
-
-    public String removeDuplicateLetters2(String s) {
-        if(s == null || s.length() == 0){
-            return "";
-        }
-        StringBuilder result = new StringBuilder();
-        int[] cnt = new int[26];
-        for(int i =0; i < s.length(); i++){
-            cnt[s.charAt(i) - 'a']++;
-        }
-        while(s.length() != 0){
-            int pos = 0;
-            for(int i = 0; i < s.length(); i++){
-                //记录唯一字符出现前的最下字母位置
-                if(s.charAt(i) < s.charAt(pos)){
-                    pos = i;
-                }
-                //找出唯一字符的则停
-                if(--cnt[s.charAt(i) - 'a'] == 0){
-                    break;
-                }
-            }
-            result.append(s.charAt(pos));
-            cnt[pos] = 0;
-            s = s.substring(pos+1).replace("" + s.charAt(pos), "");
-        }
-        return result.toString();
-    }
-    public String removeDuplicateLetters3(String sr) {
-
-        int[] count = new int[26]; //will contain number of occurences of character (i+'a')
-        boolean[] visited = new boolean[26]; //will contain if character (i+'a') is present in current result Stack
-        char[] ch = sr.toCharArray();
-        for(char c: ch){  //count number of occurences of character
-            count[c-'a']++;
-        }
-        Stack<Character> st = new Stack<>(); // answer stack
-        int index;
-        for(char s:ch){
-            index= s-'a';
-            count[index]--;   //decrement number of characters remaining in the string to be analysed
-            if(visited[index]) //if character is already present in stack, dont bother
-                continue;
-            //if current character is smaller than last character in stack which occurs later in the string again
-            //it can be removed and  added later e.g stack = bc remaining string abc then a can pop b and then c
-            while(!st.isEmpty() && s<st.peek() && count[st.peek()-'a']!=0){
-                visited[st.pop()-'a']=false;
-            }
-            st.push(s); //add current character and mark it as visited
-            visited[index]=true;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        //pop character from stack and build answer string from back
-        while(!st.isEmpty()){
-            sb.insert(0,st.pop());
-        }
-        return sb.toString();
-    }
-
-    public String removeDuplicateLetters4(String s){
         char[] count = new char[26];
-        for(char e:s.toCharArray()){
-            count[e-1]++;
+        boolean[] recorded = new boolean[26];
+        char[] arr = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+        for (char c : arr) {
+            count[c - 'a']++;
         }
-
+        for (char c : arr) {
+            int index = c - 'a';
+            count[index]--;
+            if (recorded[index]) {
+                continue;
+            }
+            while (!stack.isEmpty() && c < stack.peek() && count[stack.peek()-'a'] != 0) {
+                recorded[stack.pop() - 'a'] = false;
+            }
+            recorded[index] = true;
+            stack.push(c);
+        }
+        StringBuilder strBild = new StringBuilder();
+        while (!stack.isEmpty()) {
+            strBild.insert(0, stack.pop());
+        }
+        return strBild.toString();
     }
 }
