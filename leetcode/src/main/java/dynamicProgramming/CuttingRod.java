@@ -15,21 +15,8 @@ public class CuttingRod {
         dp[1] = p[0];
         for(int i = 1; i < length + 1; i++){
             int max = 0;
-            for(int j = 1; j <= i; j++){
-                if(i-j){
-
-                }
-                   max = Math.max(max, dp[i-j] + p[j]);
-
-//                if(i == j){
-//                    //长度为 i = j 的钢材, 卖出的价格是 p[j-1]
-//                    max = Math.max(max, p[i-1]);
-//                }
-//                else{
-//                    //长度为 j 的钢材, 卖出的价格是 p[i-1 - 1]
-//                    max = Math.max(max, dp[j] + p[i - j - 1]);
-//                }
-
+            for(int j = 1; j <= i && j < p.length; j++){
+                max = Math.max(max, dp[i-j] + p[j]);
             }
             dp[i] = max;
         }
