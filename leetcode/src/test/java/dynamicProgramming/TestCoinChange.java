@@ -6,5 +6,7 @@ public class TestCoinChange {
         int[] coins = {2};
         int numOfChange = coin.coinChange(coins, 9);
         System.out.println("result " + numOfChange);
+        int result = coin.coinChangRecursive(coins, 9 );
+        System.out.println("result" + result);
     }
 }
