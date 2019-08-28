@@ -8,5 +8,9 @@ public class TestRegularExpressionMatching {
 
         boolean recursiveResult = expression.isMatchRecursive("aa", ".*");
         System.out.println(recursiveResult);
+        boolean iterationResult = expression.isMatchIteration("aa", ".*");
+        System.out.println(iterationResult);
+        boolean result2 = expression.isMatchBottomUp("aa","a");
+        System.out.println(result2);
     }
 }

@@ -1,5 +1,6 @@
 package dynamicProgramming;
 
+
 /**
  * 10. Regular Expression Matching
  * Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
@@ -48,7 +49,12 @@ package dynamicProgramming;
  * Output: false
  */
 public class RegularExpression {
-    //recursion method
+    /**
+     * 递归法
+     * @param text
+     * @param pattern
+     * @return
+     */
     public boolean isMatchRecursion(String text, String pattern) {
         if (pattern.isEmpty()) return text.isEmpty();
         boolean firstMatch = (!text.isEmpty() &&
@@ -61,81 +67,22 @@ public class RegularExpression {
         }
     }
 
-    enum Result {
-        TRUE, FALSE
-    }
-
-    Result[][] memo;
-
-    public boolean isMatch(String text, String pattern) {
-        memo = new Result[text.length() + 1][pattern.length() + 1];
-        return dp(0, 0, text, pattern);
-    }
-
-    public boolean dp(int i, int j, String text, String pattern) {
-        if (memo[i][j] != null) {
-            return memo[i][j] == Result.TRUE;
-        }
-        boolean ans;
-        if (j == pattern.length()) {
-            ans = i == text.length();
-        } else {
-            boolean first_match = (i < text.length() &&
-                    (pattern.charAt(j) == text.charAt(i) ||
-                            pattern.charAt(j) == '.'));
-
-            if (j + 1 < pattern.length() && pattern.charAt(j + 1) == '*') {
-                ans = (dp(i, j + 2, text, pattern) ||
-                        first_match && dp(i + 1, j, text, pattern));
-            } else {
-                ans = first_match && dp(i + 1, j + 1, text, pattern);
-            }
-        }
-        memo[i][j] = ans ? Result.TRUE : Result.FALSE;
-        return ans;
-    }
-
-
-    public boolean isMatchIterative(String text, String pattern) {
-        boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];
-        dp[text.length()][pattern.length()] = true;
-
-        for (int i = text.length(); i >= 0; i--) {
-            for (int j = pattern.length() - 1; j >= 0; j--) {
-                boolean first_match = (i < text.length() &&
-                        (pattern.charAt(j) == text.charAt(i) ||
-                                pattern.charAt(j) == '.'));
-                if (j + 1 < pattern.length() && pattern.charAt(j + 1) == '*') {
-                    dp[i][j] = dp[i][j + 2] || first_match && dp[i + 1][j];
-                } else {
-                    dp[i][j] = first_match && dp[i + 1][j + 1];
-                }
-            }
-        }
-        return dp[0][0];
-    }
-
-    enum BinaryResult {
-        TRUE,
-        FALSE;
-    }
-
     /**
-     * 递归算法
+     * 自顶向下
      *
      * @param text
      * @param pattern
      * @return
      */
     public boolean isMatchRecursive(String text, String pattern) {
-        BinaryResult[][] dp = new BinaryResult[text.length() + 1][pattern.length() + 1];
+        Boolean[][] dp = new Boolean[text.length() + 1][pattern.length() + 1];
         return isMatchRecursive(0, 0, text, pattern, dp);
     }
 
-    public boolean isMatchRecursive(int i, int j, String text, String pattern, BinaryResult[][] dp) {
+    public boolean isMatchRecursive(int i, int j, String text, String pattern, Boolean[][] dp) {
         //是否已经计算过了
         if (dp[i][j] != null) {
-            return dp[i][j].equals(BinaryResult.TRUE);
+            return dp[i][j].equals(Boolean.TRUE);
         }
         boolean ans;
         //结果兜底
@@ -152,7 +99,34 @@ public class RegularExpression {
             }
         }
         //record
-        dp[i][j] = ans ? BinaryResult.TRUE:BinaryResult.FALSE;
+        dp[i][j] = ans;
         return ans;
+    }
+    /**
+     * 自底向上
+     * dp[i][j] 表示第 text的 0 到 i-1 和 pattern 的 0 到 j-1 是否相等
+     * @param text
+     * @param pattern
+     * @return
+     */
+    public boolean isMatchBottomUp(String text, String pattern){
+        if(text == null || pattern == null) {
+            return false;
+        }
+        boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];
+        dp[text.length()][pattern.length()] = true;
+        for(int i = text.length(); i >= 0; i--){
+            for(int j = pattern.length()-1; j >=0; j--){
+                boolean firstMatch = i < text.length()
+                        && (text.charAt(i) == pattern.charAt(j) || pattern.charAt(j) == '.');
+                if(j+1 < pattern.length() && pattern.charAt(j+1) == '*'){
+                    dp[i][j] = (firstMatch && dp[i+1][j]) || dp[i][j+2];
+                }
+                else{
+                    dp[i][j] = firstMatch && dp[i+1][j+1];
+                }
+            }
+        }
+        return dp[0][0];
     }
 }
