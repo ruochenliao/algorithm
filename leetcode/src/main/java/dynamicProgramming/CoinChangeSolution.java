@@ -27,6 +27,25 @@ import java.util.Arrays;
  *
  */
 public class CoinChangeSolution {
+
+    public int coinChangRecursive(int[] coins, int amount){
+        if(amount == 0){
+            return 0;
+        }
+        if(amount < 0){
+            return -1;
+        }
+        int localMin = Integer.MAX_VALUE;
+        for(int coin:coins){
+            int remCount = coinChangRecursive(coins, amount - coin);
+            if(remCount == -1){
+                continue;
+            }
+            localMin = Math.min(localMin, 1+remCount);
+        }
+        return localMin;
+    }
+
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
         Arrays.fill(dp, Integer.MAX_VALUE -1 );

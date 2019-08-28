@@ -56,7 +56,9 @@ public class RegularExpression {
      * @return
      */
     public boolean isMatchRecursion(String text, String pattern) {
+        //判断边界条件
         if (pattern.isEmpty()) return text.isEmpty();
+        //递归方程式
         boolean firstMatch = (!text.isEmpty() &&
                 (pattern.charAt(0) == text.charAt(0) || pattern.charAt(0) == '.'));
         if (pattern.length() >= 2 && pattern.charAt(1) == '*') {
@@ -69,7 +71,7 @@ public class RegularExpression {
 
     /**
      * 自顶向下
-     *
+     * dp[i][j] 表示第 text的 0 到 i-1 和 pattern 的 0 到 j-1 是否相等
      * @param text
      * @param pattern
      * @return
@@ -103,7 +105,7 @@ public class RegularExpression {
         return ans;
     }
     /**
-     * 自底向上
+     * 自底向上: 从结果往开始倒着推
      * dp[i][j] 表示第 text的 0 到 i-1 和 pattern 的 0 到 j-1 是否相等
      * @param text
      * @param pattern
@@ -114,7 +116,9 @@ public class RegularExpression {
             return false;
         }
         boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];
+        //初始化假设 text 和 pattern 是匹配的
         dp[text.length()][pattern.length()] = true;
+        //倒着推
         for(int i = text.length(); i >= 0; i--){
             for(int j = pattern.length()-1; j >=0; j--){
                 boolean firstMatch = i < text.length()
