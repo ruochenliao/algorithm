@@ -27,7 +27,14 @@ import java.util.Arrays;
  *
  */
 public class CoinChangeSolution {
-
+    /**
+     * 递归穷举步骤
+     * 1. 设置边界条件
+     * 2. 写递归公式
+     * @param coins
+     * @param amount
+     * @return
+     */
     public int coinChangRecursive(int[] coins, int amount){
         if(amount == 0){
             return 0;
@@ -43,7 +50,41 @@ public class CoinChangeSolution {
             }
             localMin = Math.min(localMin, 1+remCount);
         }
-        return localMin;
+        return localMin == Integer.MAX_VALUE ? -1: localMin;
+    }
+
+    /**
+     * dp[i] 从 i 到 amount 使用最少的零钱数
+     * 1.
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChangeRecursiveDp(int[] coins, int amount){
+        Integer[] dp = new Integer[amount + 1];
+        return coinChangRecursiveDp(coins, dp, amount);
+    }
+
+    public int coinChangRecursiveDp(int[] coins, Integer[] dp, int remain){
+        if(remain == 0){
+            return 0;
+        }
+        if(remain < 0){
+            return -1;
+        }
+        if(dp[remain] != null){
+            return dp[remain];
+        }
+        int localMin = Integer.MAX_VALUE;
+        for(int i = 0; i < coins.length; i++){
+            int remCount = coinChangRecursiveDp(coins, dp, remain - coins[i]);
+            if(remCount == -1){
+                continue;
+            }
+            localMin = Math.min(localMin, 1+remCount);
+        }
+        dp[remain] = localMin == Integer.MAX_VALUE ? -1: localMin;
+        return dp[remain];
     }
 
     public int coinChange(int[] coins, int amount) {
