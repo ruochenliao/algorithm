@@ -68,4 +68,74 @@ public class LongestParenthese {
         return maxLength;
     }
 
+    /**
+     * stack
+     * 把 -1 标志着初始长度 0 - (-1) = 1
+     * 如果 stack pop 出去为空, 那么把 ) 的 index 推到 stack 里, 那么 i - index 就是i 到index 的下一个 index 的长度
+     * @param s
+     * @return
+     */
+    public int longestValidParenthesesStack(String s){
+        Stack<Integer> stack = new Stack<>();
+        int maxLength = 0;
+        stack.push(-1);
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '('){
+                stack.push(i);
+            }
+            else{
+                stack.pop();
+                if(stack.isEmpty()){
+                    stack.push(i);
+                }
+                maxLength = Math.max(maxLength, i - stack.peek());
+            }
+        }
+        return maxLength;
+    }
+
+    /**
+     * two pointer
+     * 如果遇到 "(" left++,
+     * 如果遇到 ")" right++,
+     * 如果 right > left 则 left = right = 0
+     * 如果 left == right 那么长度是 left*2
+     * @param s
+     * @return
+     */
+    public int longestValidParenthesesTwoPointer(String s){
+        int left, right;
+        left = right = 0;
+        int maxLength = 0;
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '('){
+                left++;
+            }
+            if(s.charAt(i) == ')'){
+                right++;
+            }
+            if(right > left){
+                left = right = 0;
+            }
+            else if(left == right){
+                maxLength = Math.max(maxLength, left*2);
+            }
+        }
+        left = right = 0;
+        for(int i = s.length() -1; i >=0; i--){
+            if(s.charAt(i) == '('){
+                left++;
+            }
+            if(s.charAt(i) == ')'){
+                right++;
+            }
+            if(right < left){
+                left = right = 0;
+            }
+            else if(left == right){
+                maxLength = Math.max(maxLength, left*2);
+            }
+        }
+        return maxLength;
+    }
 }
