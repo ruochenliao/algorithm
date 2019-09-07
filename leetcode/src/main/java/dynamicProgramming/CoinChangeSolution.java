@@ -87,6 +87,12 @@ public class CoinChangeSolution {
         return dp[remain];
     }
 
+    /**
+     * iterative dp
+     * @param coins
+     * @param amount
+     * @return
+     */
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
         Arrays.fill(dp, Integer.MAX_VALUE -1 );
