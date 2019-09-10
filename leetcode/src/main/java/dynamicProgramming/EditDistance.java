@@ -1,6 +1,29 @@
 package dynamicProgramming;
 
 public class EditDistance {
+    public int minDistanceRecursive(String word1, String word2){
+        return minDistanceRecursive(word1, word2, 0, 0);
+    }
+
+    public int minDistanceRecursive(String word1, String word2, int index1, int index2){
+        if(index1 == word1.length() && index2 == word2.length()){
+            return 0;
+        }
+        if(index1 == word1.length()){
+            return word2.length() - index2 - 1;
+        }
+        if(index2 == word2.length()){
+            return word1.length() - index1 - 1;
+        }
+        if(word1.charAt(index1) == word2.charAt(index2)){
+            return minDistanceRecursive(word1, word2, index1+1, index2+1);
+        }
+        else{
+            return 1 + Math.min(minDistanceRecursive(word1, word2, index1, index2+1)
+                    , Math.min(minDistanceRecursive(word1, word2, index1+1, index2),
+                    minDistanceRecursive(word1, word2, index1+1, index2+1)));
+        }
+    }
     /**
      *
      * dp[i+1][j+1] 表示 0 到 i  和 0 到 j 需要 dp[i+1][j+1] 步操作
