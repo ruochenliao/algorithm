@@ -61,22 +61,22 @@ public class MaximumRectangle {
             int curLeft = 0;
             for(int j = 0; j < n; j++){
                 if(matrix[i][j] == '1'){
-                    left[j] = Math.max(curLeft, left[j]); // 左边界取短板
+                    left[j] = Math.max(curLeft, left[j]); //  左边界取短板, 括号里的 left[j] 是上一行的最左边界, curLeft 是这一行的最左边界
                 }
                 else{
                     left[j] = 0; // 如果matrix[i][j] = 0, 左边界为0 因为都满足高度为 0
-                    curLeft = j+1; //遇到 0, 左边界至少是 j + 1
+                    curLeft = j+1; //遇到 0, 左边界至少是 j + 1, 用来记录这一行的最左边界
                 }
             }
             //获取高度为 height[j] 的右边界
             int curRight = n -1;
             for(int j = n -1; j >= 0; j--){
                 if(matrix[i][j] == '1'){
-                    right[j] = Math.min(curRight, right[j]);  //右边界取短板
+                    right[j] = Math.min(curRight, right[j]);  //右边界取短板, 括号里的 right[j] 是上一行的最右边界
                 }
                 else{
                     right[j] = n - 1; // 如果matrix[i][j] = 0, 右边界为 n - 1, 因为都满足高度为 0
-                    curRight = j - 1; //遇到 0, 右边界至少是 j - 1
+                    curRight = j - 1; //遇到 0, 右边界至少是 j - 1,用来记录当前行的最右边界
                 }
             }
             //获取最大面积
