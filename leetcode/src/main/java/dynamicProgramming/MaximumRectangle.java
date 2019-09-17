@@ -5,10 +5,12 @@ import java.util.Arrays;
 public class MaximumRectangle {
 
     /**
+     *
      * height[j]: 记录当前坐标列向连续 1 的长度
      * left[j]: 记录当前坐标高度为 height[j] 连续 1 的左边界
      * right[j]: 记录当前坐标高度为 height[j] 连续 1 的右边界
      * maxArea: 最大 rectangle 面积
+     * maxArea = height * (右边界 - 做边界)
      *
      * if(matrix[i][j] == '1'){
      *     height[j] ++;
@@ -61,7 +63,7 @@ public class MaximumRectangle {
             int curLeft = 0;
             for(int j = 0; j < n; j++){
                 if(matrix[i][j] == '1'){
-                    left[j] = Math.max(curLeft, left[j]); //  左边界取短板, 括号里的 left[j] 是上一行的最左边界, curLeft 是这一行的最左边界
+                    left[j] = Math.max(curLeft, left[j]); //  左边界取短板, 括号里的 left[j] 是上一行高度为height[j]的最左边界, curLeft 是这一行的最左边界
                 }
                 else{
                     left[j] = 0; // 如果matrix[i][j] = 0, 左边界为0 因为都满足高度为 0
