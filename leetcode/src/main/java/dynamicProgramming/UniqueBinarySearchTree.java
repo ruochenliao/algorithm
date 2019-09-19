@@ -34,6 +34,7 @@ import java.util.Map;
 public class UniqueBinarySearchTree {
     /**
      * recursive
+     * numTreesRecursive(m, n) 计算出从 m 到 n 能输出的 bst 的个数
      * @param n
      * @return
      */
@@ -58,32 +59,37 @@ public class UniqueBinarySearchTree {
     }
 
     /**
-     * iterative
+     * 因为 (1,2,3) 和 (4,5,6) 两组生成的 bst 数都是相同的
+     * 所以令cnt[n]: 从 1 到 n 组合出 cnt[n] bsf
+     *
+     *
+     * recursive dp
      * @param n
      * @return
      */
-    public int numTreesIterative(int n) {
-        if(n < 1){
+    public int numTreesDp(int n) {
+        return numTreesRecursive(n, new Integer[n+1]);
+    }
+    public int numTreesRecursive(int n, Integer[] cnt) {
+        if(n < 0){
             return 0;
         }
-        Map<Pair<Integer, Integer>, Integer> map = new HashMap<>();
-        return numTreesIterative(1, n, map);
-    }
-
-    public int numTreesIterative(int m, int n, Map<Pair<Integer, Integer>, Integer> map){
-        if(m > n){
+        if(n == 0){
             return 1;
         }
-        if(map.get(new Pair<>(m, n)) != null){
-            return map.get(new Pair<>(m, n));
+        if(n == 1){
+            return 1;
         }
-        int cnt = 0;
-        for(int i = m; i < n + 1; i++){
-            int left = numTreesIterative(m, i -1, map);
-            int right = numTreesIterative(i+1, n, map);
-            cnt += left * right;
+        if(cnt[n] != null){
+            return cnt[n];
         }
-        map.put(new Pair<>(m,n), cnt);
-        return cnt;
+        int temp = 0;
+        for(int i = 1; i < n+1; i++){
+            int left = numTreesRecursive(i-1, cnt);
+            int right = numTreesRecursive(n - i, cnt);
+            temp += left * right;
+        }
+        cnt[n] = temp;
+        return temp;
     }
 }
