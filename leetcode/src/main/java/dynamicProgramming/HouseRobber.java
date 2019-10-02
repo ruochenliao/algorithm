@@ -56,7 +56,7 @@ public class HouseRobber {
         return maxRob;
     }
 
-    private int rob2(int[] nums){
+    public int rob2(int[] nums){
         if(nums == null || nums.length == 0){
             return 0;
         }
@@ -75,7 +75,7 @@ public class HouseRobber {
         return localMax;
     }
 
-    private int rob3(int[] nums){
+    public int rob3(int[] nums){
         if(nums == null || nums.length == 0){
             return 0;
         }
