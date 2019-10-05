@@ -14,7 +14,7 @@ public class LongestIncreasingSubsequence {
      * @param prevIndex
      * @param index
      * @param nums
-     * @param dp 以 index 为起始, (nums.length - 1) 为结束, nums[prevIndex] 为不断增长的前面一个数, 连续增加的最多的个数
+     * @param dp 以 prevIndex 为前一个起始index, index 为当前索引, nums.length -1 为结束 index, 连续增加的最多的个数
      * @return 以 index 为起始, prevIndex 为之前的数, 到 end 连续增加的最多的个数
      */
     private int lengthOfLIS(int prevIndex, int index, int[] nums, Integer[][] dp){
@@ -34,6 +34,7 @@ public class LongestIncreasingSubsequence {
         dp[prevIndex+1][index] = maxCount;
         return maxCount;
     }
+
 
     /**
      * dp[i] 从 0 到 i, 包括 nums[i] 在内连续 increasing 数的数量
