@@ -36,7 +36,8 @@ public class GuessNumberHigherOrLowerII {
     }
 
     /**
-     *
+     * 这里面最差的 scenario 的意思是 select 每个数, 但是都没有选中;
+     * 在这些最差的 scenario 中, 找最少花的钱 to guarantee a win.
      * @param low
      * @param high
      * @param dp
