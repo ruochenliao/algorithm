@@ -1,5 +1,7 @@
 package dynamicProgramming;
 
+import java.util.Arrays;
+
 public class LongestIncreasingSubsequence {
     public int lengthOfLIS(int[] nums) {
         if(nums == null || nums.length == 0){
@@ -37,6 +39,7 @@ public class LongestIncreasingSubsequence {
 
 
     /**
+     * O(n^2)
      * dp[i] 从 0 到 i, 包括 nums[i] 在内连续 increasing 数的数量
      * @param nums
      * @return
@@ -59,5 +62,26 @@ public class LongestIncreasingSubsequence {
             maxNum = Math.max(maxNum, dp[i]);
         }
         return maxNum;
+    }
+
+    /**
+     * binary search
+     * @param nums
+     * @return
+     */
+    public int lengthOfLISBinarySearch(int[] nums){
+        int[] dp = new int[nums.length];
+        int len = 0;
+        for (int num : nums) {
+            int i = Arrays.binarySearch(dp, 0, len, num);
+            if (i < 0) {
+                i = -(i + 1);
+            }
+            dp[i] = num;
+            if (i == len) {
+                len++;
+            }
+        }
+        return len;
     }
 }
