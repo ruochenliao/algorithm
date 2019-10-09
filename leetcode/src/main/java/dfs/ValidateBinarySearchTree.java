@@ -144,6 +144,25 @@ public class ValidateBinarySearchTree {
         upperList1.add(upper);
     }
 
+    public boolean isValidBSTInOrder1(TreeNode root){
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            while(root.left != null){
+                stack.push(root.left);
+                root = root.left;
+            }
+            root
+        }
+    }
+
+
+
+
+
+
+
+
     /**
      * inOrder traverse
      * @param root
