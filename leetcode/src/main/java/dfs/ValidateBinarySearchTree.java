@@ -82,6 +82,7 @@ public class ValidateBinarySearchTree {
     private static LinkedList<Integer> lowerList = new LinkedList<>();
     private static LinkedList<Integer> upperList = new LinkedList<>();
     public boolean isValidBSTIterative(TreeNode treeNode){
+
         insertNode(treeNode, null, null);
         while(!curList.isEmpty()){
             TreeNode cur = curList.remove();
@@ -117,23 +118,26 @@ public class ValidateBinarySearchTree {
     LinkedList<Integer> lowerList1 = new LinkedList<>();
     LinkedList<Integer> upperList1 = new LinkedList<>();
     public boolean isValidBSTIterativeBfs(TreeNode treeNode){
+        if(treeNode == null){
+            return true;
+        }
         insertNode1(treeNode, null, null);
         while(!curList1.isEmpty()){
             TreeNode cur = curList1.poll();
             Integer lowerVal = lowerList1.poll();
             Integer upperVal = upperList1.poll();
-            if(cur == null){
-                continue;
-            }
             if(lowerVal != null && cur.val <= lowerVal){
                 return false;
             }
             if(upperVal != null && cur.val >= upperVal){
                 return false;
             }
-            System.out.println(cur.val);
-            insertNode1(cur.left, lowerVal, cur.val);
-            insertNode1(cur.right, cur.val, upperVal);
+            if(cur.left != null){
+                insertNode1(cur.left, lowerVal, cur.val);
+            }
+            if(cur.right != null){
+                insertNode1(cur.right, cur.val, upperVal);
+            }
         }
         return true;
     }
@@ -143,24 +147,6 @@ public class ValidateBinarySearchTree {
         lowerList1.add(lower);
         upperList1.add(upper);
     }
-
-    public boolean isValidBSTInOrder1(TreeNode root){
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while(!stack.isEmpty()){
-            while(root.left != null){
-                stack.push(root.left);
-                root = root.left;
-            }
-            root
-        }
-    }
-
-
-
-
-
-
 
 
     /**
