@@ -74,7 +74,7 @@ public class ValidateBinarySearchTree {
     }
 
     /**
-     * iterative bfs
+     * iterative dfs
      * @param treeNode
      * @return
      */

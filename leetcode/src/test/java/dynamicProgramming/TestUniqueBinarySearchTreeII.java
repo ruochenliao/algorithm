@@ -10,7 +10,7 @@ public class TestUniqueBinarySearchTreeII {
         UniqueBinarySearchTreeII searchTreeII = new UniqueBinarySearchTreeII();
         List<TreeNode> list = searchTreeII.generateTrees(3);
         for(TreeNode treeNode:list){
-            TreeUtils.show(treeNode);
+            TreeUtils.printTree(treeNode);
         }
     }
 }

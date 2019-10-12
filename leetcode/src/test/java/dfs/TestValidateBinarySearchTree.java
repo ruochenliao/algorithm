@@ -1,7 +1,6 @@
-package bfs;
+package dfs;
 
 import Utils.TreeNode;
-import dfs.ValidateBinarySearchTree;
 
 public class TestValidateBinarySearchTree {
     public static void main(String[] args){
