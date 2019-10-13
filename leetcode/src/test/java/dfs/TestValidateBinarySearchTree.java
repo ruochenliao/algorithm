@@ -1,20 +1,20 @@
 package dfs;
 
 import Utils.TreeNode;
+import Utils.TreeUtils;
 
 public class TestValidateBinarySearchTree {
     public static void main(String[] args){
-        TreeNode treeNode = new TreeNode(-30);
-        treeNode.left = new TreeNode(-31);
-        treeNode.right = new TreeNode(-22);
-        treeNode.right.left = new TreeNode(-25);
-        treeNode.right.right = new TreeNode(80);
+        TreeNode root = TreeUtils.createTree(new Integer[]{1,2,3,4,5});
+        TreeUtils.printTree(root);
         ValidateBinarySearchTree searchTree = new ValidateBinarySearchTree();
-        boolean result = searchTree.isValidBST(treeNode);
+        boolean result = searchTree.isValidBST(root);
+
+
         System.out.println(result);
-        boolean result2 = searchTree.isValidBSTIterative(treeNode);
+        boolean result2 = searchTree.isValidBSTIterative(root);
         System.out.println(result2);
-        boolean result3 = searchTree.isValidBSTIterativeBfs(treeNode);
+        boolean result3 = searchTree.isValidBSTIterativeBfs(root);
         System.out.println(result3);
     }
 }
