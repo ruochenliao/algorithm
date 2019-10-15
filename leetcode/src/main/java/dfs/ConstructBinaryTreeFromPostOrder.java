@@ -11,6 +11,7 @@ public class ConstructBinaryTreeFromPostOrder {
 
     /**
      * postOrder recursive construct the tree
+     * 把 postOrder 反过来, 再让按 right 比 left 递归, 就是 inorder 的顺序
      * @param inorder
      * @param postorder
      * @return
