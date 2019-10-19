@@ -11,7 +11,7 @@ public class TestPopulatingNextRightPointer {
         root.right.right = new PopulatingNextRightPointer.Node(7, null, null, null);
 
         PopulatingNextRightPointer pointer = new PopulatingNextRightPointer();
-        PopulatingNextRightPointer.Node result = pointer.connect(root);
+        PopulatingNextRightPointer.Node result = pointer.connect1(root);
         System.out.println(result.val);
     }
 }

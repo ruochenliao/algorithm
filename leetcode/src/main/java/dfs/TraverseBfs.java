@@ -5,6 +5,7 @@ import Utils.TreeNode;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class TraverseBfs {
     public void searchIterative(TreeNode root){
@@ -14,26 +15,32 @@ public class TraverseBfs {
             int size = queue.size();
             for(int i = 0; i < size; i++){
                 root = queue.remove();
-                System.out.println(root.val);
+                System.out.print(root.val + ",");
                 if(root.left != null){
                     queue.add(root.left);
                 }
                 if(root.right != null){
-                    queue.add(root.left);
+                    queue.add(root.right);
                 }
             }
         }
     }
 
-    public void preOrderSearchRecursive(TreeNode root){
-        if(root == null){
-            return;
+    public void inorderIterative(TreeNode root){
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            while(root.left!= null){
+                stack.push(root.left);
+                root = root.left;
+            }
+            TreeNode node = stack.pop();
+            System.out.print(node.val + ",");
+            if(node.right!= null){
+                stack.push(node.right);
+                root = node.right;
+            }
         }
-        System.out.println(root.val);
-        preOrderSearchRecursive(root.left);
-        preOrderSearchRecursive(root.right);
     }
-    public void preOrderSearchIterative(TreeNode root){
-        List<TreeNode> list = new LinkedList<>();
-    }
+
 }

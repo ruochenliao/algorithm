@@ -47,12 +47,26 @@ public class TestSearchBfs {
         TreeUtils.printTree(newRoot);
 
         /**
-         * 替换掉一个节点
+         * 删除一个节点
          */
-        TreeNode newTreeNode = new TreeNode(100);
-        newTreeNode.left = new TreeNode(200);
-        TreeNode tranplantParentNode = bfs.transplantNodeParent(root, root.left.left.left, newTreeNode);
-        System.out.println("交换节点");
-        TreeUtils.printTree(tranplantParentNode);
+        System.out.println("删除一个 child");
+        TreeNode removeNode = bfs.deleteNode(root, root.left.left.left);
+        TreeUtils.printTree(removeNode);
+        TreeNode removeNode1 = bfs.deleteNode(root, root.right.right.right);
+        TreeUtils.printTree(removeNode1);
+        System.out.println("删除包含两个 child, 并且右孩子是叶子节点");
+        TreeNode removeNode2 = bfs.deleteNode(root, root.right);
+        TreeUtils.printTree(removeNode2);
+        TreeUtils.printTree(removeNode2);
+        bfs.deleteNode(root,root);
+        TreeUtils.printTree(root);
+        System.out.println("删除包含两个 child");
+        removeNode2.right.left = new TreeNode(10);
+        removeNode2.right.left.parent = removeNode2.right;
+        removeNode2.right.left.right = new TreeNode(20);
+        removeNode2.right.left.right.parent = removeNode2.right.left;
+        TreeUtils.printTree(removeNode2);
+        TreeNode removeNode3 =bfs.deleteNode(root,root);
+        TreeUtils.printTree(removeNode3);
     }
 }

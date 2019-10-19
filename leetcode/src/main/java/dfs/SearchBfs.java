@@ -90,23 +90,28 @@ public class SearchBfs {
      * @param x
      * @param y
      */
-    public TreeNode transplantNodeParent(TreeNode root,TreeNode x, TreeNode y){
-        if(x.parent == null){
-            return y;
+    public void transplantNodeParent(TreeNode root,TreeNode x, TreeNode y){
+        if(x == null){
+            return;
         }
-        if(x.parent.left == x){
-            x.parent.left = y;
-        } else{
-            x.parent.right = y;
+        if(y == null){
+            if(x.parent.left == x){
+                x.parent.left = null;
+            }else{
+                x.parent.right = null;
+            }
         }
-        if(y != null){
-            y.parent = x.parent;
-            y.left = x.left;
-            y.right = x.right;
+        else{
+            x.val = y.val;
         }
-        return root;
     }
 
+    /**
+     * 删除节点 node
+     * @param root
+     * @param node
+     * @return
+     */
     public TreeNode deleteNode(TreeNode root, TreeNode node){
         if(node == null){
             return null;
@@ -116,23 +121,24 @@ public class SearchBfs {
             transplantNodeParent(root, node, null);
         }
         //delete 的这个节点有一个child节点
-        if(node.right == null){
+        else if(node.right == null){
             transplantNodeParent(root, node, node.left);
-            return root;
         }else{
             TreeNode minimumNode = findMinimum(node.right);
             if(minimumNode == node.right){
-                transplantNodeParent(root, node, node.right);
-                return root;
+                transplantNodeParent(root, node, minimumNode);
+                minimumNode.parent.right = null;
             }
-            if(minimumNode.right == null){
+            else if(minimumNode.right == null){
                 minimumNode.parent.left = null;
                 transplantNodeParent(root, node, minimumNode);
-                return root;
             }
-            transplantNodeParent(root, minimumNode, minimumNode.right);
-            transplantNodeParent(root, node, minimumNode);
-            return root;
+            else {
+                minimumNode.parent.left = minimumNode.right;
+                minimumNode.right.parent = minimumNode.parent;
+                transplantNodeParent(root, node, minimumNode);
+            }
         }
+        return root;
     }
 }
