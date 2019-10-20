@@ -38,7 +38,6 @@ public class ConstructBinaryTreeFromPreorderAndInorder {
         int curVal = preorder[preorderIndex];
         TreeNode root = new TreeNode(curVal);
         int inorderIndex = map.get(curVal);
-        preorderIndex++;
         root.left = buildBinaryTree(preorder, inorderLeft, inorderIndex-1);
         root.right = buildBinaryTree(preorder, inorderIndex + 1, inorderRight);
         return root;
