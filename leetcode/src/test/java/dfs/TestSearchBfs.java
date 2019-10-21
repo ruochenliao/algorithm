@@ -5,7 +5,7 @@ import Utils.TreeUtils;
 
 public class TestSearchBfs {
     public static void main(String[] args){
-        SearchBfs bfs = new SearchBfs();
+        SearchBst bfs = new SearchBst();
         /**
          * 构建 bsf
          */

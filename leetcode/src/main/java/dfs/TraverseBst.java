@@ -3,11 +3,10 @@ package dfs;
 import Utils.TreeNode;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
-public class TraverseBfs {
+public class TraverseBst {
     public void searchIterative(TreeNode root){
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);

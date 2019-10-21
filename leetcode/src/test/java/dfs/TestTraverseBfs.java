@@ -5,7 +5,7 @@ import Utils.TreeUtils;
 
 public class TestTraverseBfs {
     public static void main(String[] args){
-        TraverseBfs bfs = new TraverseBfs();
+        TraverseBst bfs = new TraverseBst();
         TreeNode root = TreeUtils.createTree(new Integer[]{5,3,10,2,4,7,20,1});
         TreeUtils.printTree(root);
         System.out.println("iterative search");

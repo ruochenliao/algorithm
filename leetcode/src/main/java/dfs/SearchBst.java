@@ -2,7 +2,7 @@ package dfs;
 
 import Utils.TreeNode;
 
-public class SearchBfs {
+public class SearchBst {
     public void inorderSearch(TreeNode root){
         if(root == null){
             return;
