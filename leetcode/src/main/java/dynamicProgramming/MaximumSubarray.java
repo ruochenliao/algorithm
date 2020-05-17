@@ -1,5 +1,27 @@
 package dynamicProgramming;
 
+/**
+ * 53. Maximum Subarray
+ * Easy
+ *
+ * 7295
+ *
+ * 334
+ *
+ * Add to List
+ *
+ * Share
+ * Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+ *
+ * Example:
+ *
+ * Input: [-2,1,-3,4,-1,2,1,-5,4],
+ * Output: 6
+ * Explanation: [4,-1,2,1] has the largest sum = 6.
+ * Follow up:
+ *
+ * If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+ */
 public class MaximumSubarray {
     /**
      * sum[i] 表示以 nums[i] 为结尾的并包含 nums[i] 的连续相加的最大值
@@ -37,5 +59,14 @@ public class MaximumSubarray {
             max = Math.max(sum, max);
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {-2,1,-3,4,-1,2,1,-5,4};
+        MaximumSubarray maximumSubarray = new MaximumSubarray();
+        int oNSpaceResult = maximumSubarray.maxSubArray(arr);
+        int o1SpaceResult = maximumSubarray.maxSubArrayWith1Space(arr);
+        System.out.println("oNSpaceResult " + oNSpaceResult);
+        System.out.println("o1SpaceResult " + o1SpaceResult);
     }
 }
