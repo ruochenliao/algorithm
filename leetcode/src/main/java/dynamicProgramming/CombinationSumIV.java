@@ -38,7 +38,7 @@ package dynamicProgramming;
  * What limitation we need to add to the question to allow negative numbers?
  *
  * Credits:
- * Special thanks to @pbrother for adding this problem and creating all test cases.
+ * Special thanks to @pbrother for adding this problem and creating all designpattern cases.
  */
 public class CombinationSumIV {
     public int combinationSum4(int[] nums, int target) {

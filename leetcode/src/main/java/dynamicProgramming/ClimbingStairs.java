@@ -27,7 +27,7 @@ public class ClimbingStairs {
             return 1;
         }
         if(remain < 0){
-            return -1;
+            return 0;
         }
         if(dp[remain] != null){
             return dp[remain];
@@ -50,6 +50,45 @@ public class ClimbingStairs {
             steps[i] = steps[i-1] + steps[i-2];
         }
         return steps[n];
+    }
+
+    public int climbStairsIterativeProxmity(int n){
+        if(n < 0){
+            return 0;
+        }
+        if(n == 0){
+            return 0;
+        }
+        if(n == 1){
+            return 1;
+        }
+        if(n == 2){
+            return 2;
+        }
+        int prePre = 1;
+        int pre = 1;
+        int cur = 0;
+        for(int i = 2; i < n + 1; i++){
+            cur = prePre + pre;
+            prePre = pre;
+            pre = cur;
+        }
+        return cur;
+    }
+
+    public static void main(String[] args) {
+        ClimbingStairs climbingStairs = new ClimbingStairs();
+
+        int n = 10;
+        int recursiveResult = climbingStairs.climbStairsRecursive(n);
+        int dpResult = climbingStairs.climbStairsRecursiveDp(n, new Integer[n+1]);
+        int iterativeDpResult = climbingStairs.climbStairsIterativeDp(n);
+        int iterativeResult = climbingStairs.climbStairsIterativeProxmity(n);
+
+        System.out.println("recursiveResult " + recursiveResult);
+        System.out.println("dpResult " + dpResult);
+        System.out.println("iterativeDpResult " + iterativeDpResult);
+        System.out.println("iterativeResult " + iterativeResult);
     }
 }
 
