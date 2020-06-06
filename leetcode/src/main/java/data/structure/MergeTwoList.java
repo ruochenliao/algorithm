@@ -10,7 +10,7 @@ import java.util.List;
 public class MergeTwoList {
     public List<Integer> mergeTwoList(List<Integer> l1, List<Integer> l2) {
         List<Integer> result = new LinkedList<>();
-        int k = 0, i = 0, j = 0;
+        int i = 0, j = 0;
         while (i < l1.size() && j < l2.size()) {
             if (l1.get(i) < l2.get(j)) {
                 result.add(l1.get(i));
@@ -19,7 +19,6 @@ public class MergeTwoList {
                 result.add(l2.get(j));
                 j++;
             }
-            k++;
         }
 
         while (i < l1.size()) {
