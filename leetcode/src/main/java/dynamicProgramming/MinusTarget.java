@@ -50,7 +50,6 @@ public class MinusTarget {
         }
 
         List<Pair<Integer, Integer>> result = new ArrayList<>();
-        Arrays.sort(arr);
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
             if (map.containsKey(target + arr[i])) {
